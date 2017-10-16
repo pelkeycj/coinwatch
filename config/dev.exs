@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :coinwatch, Coinwatch.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "coinwatch",
+  password: "coinwatch",
   database: "coinwatch_dev",
   hostname: "localhost",
   pool_size: 10
