@@ -1,0 +1,14 @@
+Resources:
+
+  * Users:
+    - Users can log in/log out
+    - Users have an email, password (encrypted), and coins that they follow
+    - Users are allowed to follow/unfollow coins
+    - Users can (probably) receive email updates when their coins reach a desired value
+    - ...what else?
+
+  * Coins:
+    - Coins have a value (in USD to begin) and this value updates from an API
+    - Coins can be followed/unfollowed by users
+    - Coins have a timestamp of their last update to know how recent the price is
+    - ...what else?
