@@ -3,5 +3,8 @@ elixir:
   - 1.5.2
 otp_release:
   - 20.1
+notifications:
+  email: false
 before_script:
-  - psql -c 'create database coinwatch_test:' -U postgres
+  - psql -U postgres -c "CREATE USER coinwatch WITH CREATEUSER PASSWORD 'coinwatch';"
+  - psql -U postgres -c "create database coinwatch_test;"
