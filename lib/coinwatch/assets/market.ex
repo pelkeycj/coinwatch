@@ -15,7 +15,7 @@ defmodule Coinwatch.Assets.Market do
   @doc false
   def changeset(%Market{} = market, attrs) do
     market
-    |> cast(attrs, [:exchange, :pair])
+    |> cast(attrs, [:exchange, :pair, :rate])
     |> validate_required([:exchange, :pair])
   end
 end

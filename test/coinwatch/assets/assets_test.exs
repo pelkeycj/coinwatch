@@ -66,4 +66,7 @@ defmodule Coinwatch.AssetsTest do
       assert %Ecto.Changeset{} = Assets.change_market(market)
     end
   end
+
+  
+
 end

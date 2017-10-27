@@ -120,7 +120,6 @@ defmodule Coinwatch.Assets do
     Poison.decode(res.body)
   end
 
-  #TODO test
   def isolate_result(res) do
     with {:ok, result} <- Map.fetch(res, "result") do
       result
