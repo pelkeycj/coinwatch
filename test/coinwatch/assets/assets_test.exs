@@ -65,8 +65,41 @@ defmodule Coinwatch.AssetsTest do
       market = market_fixture()
       assert %Ecto.Changeset{} = Assets.change_market(market)
     end
+
+    test "get_or_create/3 gets existing market when matching args" do
+      market = market_fixture()
+      existing = Assets.get_or_create(@valid_attrs[:exchange], @valid_attrs[:pair])
+      assert market == existing
+    end
+
+    test "get_or_create/3 creates new market if no matching args" do
+      assert %Market{exchange: "EXCHANGE", pair: "PAIR"}
+             == Assets.get_or_create("EXCHANGE", "PAIR")
+    end
+
+    #these are basically testing the same thing as get_or_create/3 tests
+    test "upsert_market/2 updates existing" do
+      ex = @valid_attrs[:exchange]
+      pair = @valid_attrs[:pair]
+      rate = Decimal.new(100.5)
+      Assets.create_market(@valid_attrs)
+      {:ok, %Market{} = upserted} =  Assets.upsert_market(ex <> ":" <> pair, rate)
+      assert %Market{} = upserted
+      assert upserted.rate == rate
+      assert upserted.exchange == ex
+      assert upserted.pair == pair
+    end
+
+    test "upsert_market/2 creates new if no existing" do
+      exch = "EXCHANGE"
+      pair = "PAIR"
+      rate = Decimal.new(1000)
+      {:ok, %Market{} = upserted}  = Assets.upsert_market(exch <> ":" <> pair, rate)
+      assert %Market{} = upserted
+      assert upserted.rate == rate
+      assert upserted.exchange == exch
+      assert upserted.pair == pair
+    end
+
   end
-
-  
-
 end

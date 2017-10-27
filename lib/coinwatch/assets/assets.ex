@@ -126,7 +126,6 @@ defmodule Coinwatch.Assets do
     end
   end
 
-  #TODO test
   @doc """
     Gets all markets and their prices. For each obtained data,
     a Market struct is either created or updated to contain the latest
@@ -142,7 +141,7 @@ defmodule Coinwatch.Assets do
     end
   end
 
-  #TODO test
+
   @doc """
     Updates or inserts a Market with the new rate.
   """
@@ -151,35 +150,32 @@ defmodule Coinwatch.Assets do
     exchange = List.first(list)
     pair = List.last(list)
 
-    if String.length(pair) == 6 do
-      get_or_create(exchange, pair, rate)
-      |> Market.changeset(%{rate: rate})
-      |> Repo.insert_or_update()
-      |> broadcast_to_watchers()
-    end
+    get_or_create(exchange, pair)
+    |> Market.changeset(%{rate: rate})
+    |> Repo.insert_or_update()
+    |> broadcast_to_watchers()
   end
 
-  #TODO test
   @doc """
     Retrieves an existing Market matching the exchange and pair arguments or
     creates a new one.
   """
-  def get_or_create(exchange, pair, rate) do
+  def get_or_create(exchange, pair) do
     case Repo.get_by(Market, exchange: exchange, pair: pair) do
       nil ->
-        %Market{exchange: exchange, pair: pair, rate: rate}
+        %Market{exchange: exchange, pair: pair}
       market ->
         market
     end
   end
 
-  #TODO test
   @doc """
     Broadcasts market to user's channel if they follow this market.
   """
   def broadcast_to_watchers(market) do
     #TODO
     IO.inspect(market)
+    market
   end
 
 end
