@@ -22,6 +22,13 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :coinwatch, Coinwatch.Scheduler,
+       jobs: [
+         market_data: [
+           schedule: {:extended, "*/20"}, # run every 20 seconds
+           task: {Coinwatch.Assets, :upsert_markets, []}
+         ]
+       ]
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
