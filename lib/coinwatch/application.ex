@@ -14,6 +14,8 @@ defmodule Coinwatch.Application do
       supervisor(CoinwatchWeb.Endpoint, []),
       # Start your own worker by calling: Coinwatch.Worker.start_link(arg1, arg2, arg3)
       # worker(Coinwatch.Worker, [arg1, arg2, arg3]),
+
+      worker(Coinwatch.Scheduler, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

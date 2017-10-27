@@ -43,6 +43,8 @@ defmodule Coinwatch.Mixfile do
       {:cowboy, "~> 1.0"},
       {:httpoison, "~> 0.13"},
       {:poison, "~> 3.1"},
+      {:quantum, ">= 2.1.1"},
+      {:timex, "~> 3.0"},
     ]
   end
 
