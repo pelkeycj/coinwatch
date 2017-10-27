@@ -1,14 +1,69 @@
-Resources:
+Application Design
 
-  * Users:
-    - Users can log in/log out
-    - Users have an email, password (encrypted), and coins that they follow
-    - Users are allowed to follow/unfollow coins
-    - Users can (probably) receive email updates when their coins reach a desired value
-    - ...what else?
 
-  * Coins:
-    - Coins have a value (in USD to begin) and this value updates from an API
-    - Coins can be followed/unfollowed by users
-    - Coins have a timestamp of their last update to know how recent the price is
-    - ...what else?
+
+
+Necessary things (remove later):
+
+1. Overview - Describe your application
+2. User Stories - Provide several user stories for your application, covering
+                  most use cases and all user roles
+3. Data Design - How are you storing your data? Where does it come from? What
+                 do you do with it? Provide initial schemas and relationships.
+4. App Interface - What are the major pages of your application? What's on
+                   them, and what do users use them for?
+5. Experiments - Describe each of your experiments. What did you learn? Are you
+                 going to change anything as a result of the experiment?
+6. Project Status - How much of the project has been implemented? What works?
+                    What problems have your run into so far? Have you made any
+                    significant changes to your concept?
+
+--------------------------------------------------------------------------------
+Overview
+
+  CoinWatch is a cryptocurrency price-monitoring website. The site connects to
+  exchange APIs in order to provide realtime updates on cryptocurrency prices
+  across various exchanges. Users can follow select cryptocurrencies in order to
+  receive live updates on price changes on their main feed. Users can also sign
+  up for email alerts when a currency's value passes a desired amount.
+
+--------------------------------------------------------------------------------
+User Stories
+
+- As a new user, I can create an account.
+- As a returning user, I can log in/log out.
+- As a normal user, I can see all the currencies available for me to follow.
+- As a normal user, I can choose certain currencies to follow/unfollow
+- As a normal user, I can (probably) sign up for and receive email updates when
+  a currency reaches a desired value
+- ...
+- ...
+- ...
+- As an admin user, I can remove users, remove available currencies(?),
+  ...what else?
+
+--------------------------------------------------------------------------------
+Data Design
+
+* Users:
+  - Fields:
+    > email
+    > password (hash)
+    > has-many coins/whatever we use to represent coins?
+
+* Coins/Currencies:
+  (probably unnecessary based on how we interact with the APIs, but i'll keep
+  it for now)
+  - Fields:
+    > value, updates from an API
+    > timestamp of their last update
+    > ???
+
+--------------------------------------------------------------------------------
+App Interface
+
+--------------------------------------------------------------------------------
+Experiments
+
+--------------------------------------------------------------------------------
+Project Status
