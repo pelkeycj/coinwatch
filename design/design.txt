@@ -70,9 +70,38 @@ Experiments (Describe each of your experiments. What did you learn? Are you
                  going to change anything as a result of the experiment?)
 
 
+- Polling
+    This experiment was a test to ensure that we can perform an operation
+    every x seconds. The experiment was successful, and we are using this to
+    update currency values from an API every few seconds to keep users up to
+    date on the prices of currencies they want to see.
+
+- API
+    This experiment tested to ensure that we can access the data from
+    Cryptowatch's API and process it. This one was successful as well, and
+    helped to solidify the base on which our cryptocurrency application will
+    function. We are using the Cryptowatch API, which allows us to retrieve
+    price values from multiple exchanges all from one API to give users multiple
+    options when deciding where to get the best value for their money.
+
+- Email
+    This experiment was done to figure out how email can be sent through Elixir/
+    Phoenix. We were able to find success at this using Mailgun (email service)
+    and the corresponding library that is available for use in Phoenix. Using
+    Mailgun ended up being more straightforward than expected, and was a good
+    intro to using SMTP for email-sending.
+
+- Front-end
+    The front-end experiment is a two page application using React. The app
+    consists of a landing page and a demo page. The landing page is where the
+    user begins, which we can later use to update the user on their personalized
+    currency feed or to put any helpful information we might want users to see
+    upon visiting the website for the first time or just logging in. The demo
+    page currently updates automatically every 5 seconds with mock data to
+    illustrate what our application could look like when it is actually fully
+    functioning.
 
 --------------------------------------------------------------------------------
-Project Status
 Project Status (How much of the project has been implemented? What works?
                     What problems have your run into so far? Have you made any
                     significant changes to your concept?)
