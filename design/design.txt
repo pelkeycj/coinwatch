@@ -5,18 +5,19 @@ Application Design
 
 Necessary things (remove later):
 
-1. Overview - Describe your application
-2. User Stories - Provide several user stories for your application, covering
-                  most use cases and all user roles
-3. Data Design - How are you storing your data? Where does it come from? What
-                 do you do with it? Provide initial schemas and relationships.
-4. App Interface - What are the major pages of your application? What's on
-                   them, and what do users use them for?
-5. Experiments - Describe each of your experiments. What did you learn? Are you
-                 going to change anything as a result of the experiment?
-6. Project Status - How much of the project has been implemented? What works?
-                    What problems have your run into so far? Have you made any
-                    significant changes to your concept?
+[X] 1. Overview - Describe your application
+[?] 2. User Stories - Provide several user stories for your application,
+                      covering most use cases and all user roles
+[X] 3. Data Design - How are you storing your data? Where does it come from?
+                     What do you do with it? Provide initial schemas and
+                     relationships.
+[X] 4. App Interface - What are the major pages of your application? What's on
+                       them, and what do users use them for?
+[X] 5. Experiments - Describe each of your experiments. What did you learn? Are
+                     you going to change anything as a result of the experiment?
+[ ] 6. Project Status - How much of the project has been implemented? What
+                        works? What problems have your run into so far? Have you
+                        made any significant changes to your concept?
 
 --------------------------------------------------------------------------------
 Overview
@@ -32,43 +33,56 @@ User Stories
 
 - As a new user, I can create an account.
 - As a returning user, I can log in/log out.
-- As a normal user, I can see all the currencies available for me to follow.
+- As a normal user, I can see a listing of all the currencies that are available
+  for me to follow.
 - As a normal user, I can choose certain currencies to follow/unfollow
-- As a normal user, I can (probably) sign up for and receive email updates when
-  a currency reaches a desired value
+- As a normal user, I can sign up for and receive email updates when a currency
+  reaches a desired value
+- As a normal user, I can change my email address to keep it up to date for
+  notifications.
 - ...
 - ...
-- ...
-- As an admin user, I can remove users, remove available currencies(?),
+- As an admin user, I can remove users, maybe remove available currencies(?)
+
   ...what else?
 
 --------------------------------------------------------------------------------
 Data Design
 
+  We will keep a database of users and are using the Cryptowatch API to get data
+  for various cryptocurrencies. Users provide their own data on registration and
+  through interacting with the site after they have registered.
+
 * Users:
   - Fields:
     > email
     > password (hash)
-    > has-many coins/whatever we use to represent coins?
+    > the coins they follow (may be represented as a pairing of user and
+      currency, similar to how follows were implemented in microblog)
 
 * Coins/Currencies:
-  (probably unnecessary based on how we interact with the APIs, but i'll keep
-  it for now)
   - Fields:
-    > value, updates from an API
+    > value
     > timestamp of their last update
-    > ???
+    > name/symbol
+    * coins are very likely to change based on how we implement/integrate the
+      Cryptowatch API with our data
 
 --------------------------------------------------------------------------------
 App Interface (What are the major pages of your application? What's on
-                   them, and what do users use them for?)
+                them, and what do users use them for?)
 
-
+  The most important page for users is the main feed, where they will get live(ish)
+  updates on the price of the cryptocurrencies they select to watch. There will
+  also be an index of all available currencies to allow user to have an idea of
+  the rage of currencies offered and be able to check/uncheck a select few. We
+  will likely implement some sort of account settings so users can change things
+  about their account, especially since we are offering the ability to receive
+  email notifications and we want users to be able to keep their email address
+  up to date.
 
 --------------------------------------------------------------------------------
-Experiments (Describe each of your experiments. What did you learn? Are you
-                 going to change anything as a result of the experiment?)
-
+Experiments
 
 - Polling
     This experiment was a test to ensure that we can perform an operation
