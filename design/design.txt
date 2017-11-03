@@ -60,10 +60,21 @@ Data Design
     > ???
 
 --------------------------------------------------------------------------------
-App Interface
+App Interface (What are the major pages of your application? What's on
+                   them, and what do users use them for?)
+
+
 
 --------------------------------------------------------------------------------
-Experiments
+Experiments (Describe each of your experiments. What did you learn? Are you
+                 going to change anything as a result of the experiment?)
+
+
 
 --------------------------------------------------------------------------------
 Project Status
+Project Status (How much of the project has been implemented? What works?
+                    What problems have your run into so far? Have you made any
+                    significant changes to your concept?)
+
+....
