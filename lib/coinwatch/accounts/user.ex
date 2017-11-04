@@ -12,7 +12,7 @@ defmodule Coinwatch.Accounts.User do
     field :password, :string, virtual: true
 
     # rate limit failed login attempts
-    field :pw_tries, :integer
+    field :pw_tries, :integer, default: 0
     field :pw_last_try, :utc_datetime
 
     #used when registering
@@ -26,11 +26,17 @@ defmodule Coinwatch.Accounts.User do
     user
     |> cast(attrs, [:username, :email, :password, :password_confirmation])
     |> validate_confirmation(:password)
+    |> validate_format(:email, email_regex())
     |> validate_password(:password)
     |> put_pass_hash()
     |> validate_required([:username, :email, :password_hash])
     |> unique_constraint(:username)
     |> unique_constraint(:email)
+  end
+
+  # just to ensure '@', should probaby use confirmation email additionally
+  def email_regex do
+    ~r/(\w+)@([\w.]+)/
   end
 
   # from Comeonin docs
@@ -53,6 +59,8 @@ defmodule Coinwatch.Accounts.User do
   def valid_password?(password) when byte_size(password) > 7 do
     {:ok, password}
   end
+
+  def valid_password?(password), do: {:error, "password is too short"}
 
   # by Nat Tuck
   def update_tries(throttle, prev) do
