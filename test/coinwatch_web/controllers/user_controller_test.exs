@@ -3,14 +3,10 @@ defmodule CoinwatchWeb.UserControllerTest do
 
   alias Coinwatch.Accounts
   alias Coinwatch.Accounts.User
-
-  #TODO test user API actions
-
-  @docp """
-
-  @create_attrs %{email: "some email", password: "some password", username: "some username"}
-  @update_attrs %{email: "some updated email", password: "some updated password", username: "some updated username"}
-  @invalid_attrs %{email: nil, password_hash: nil, username: nil}
+  
+  @create_attrs %{email: "some@email.com", password: "password", username: "username"}
+  @update_attrs %{email: "updated@email.com", password: "updated password", username: "updated username"}
+  @invalid_attrs %{email: nil, password: nil, username: nil}
 
   def fixture(:user) do
     {:ok, user} = Accounts.create_user(@create_attrs)
@@ -34,10 +30,9 @@ defmodule CoinwatchWeb.UserControllerTest do
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
       conn = get conn, user_path(conn, :show, id)
-      assert json_response(conn, 200)["data"] == %{
-        "id" => id,
-        "email" => "some email",
-        "username" => "some username"}
+      assert %{"id" => id} = json_response(conn, 200)["data"]
+      assert %{"email" => "some@email.com"} = json_response(conn, 200)["data"]
+      assert %{"username" => "username"} = json_response(conn, 200)["data"]
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -54,10 +49,9 @@ defmodule CoinwatchWeb.UserControllerTest do
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
       conn = get conn, user_path(conn, :show, id)
-      assert json_response(conn, 200)["data"] == %{
-        "id" => id,
-        "email" => "some updated email",
-        "username" => "some updated username"}
+      assert %{"id" => id} = json_response(conn, 200)["data"]
+      assert %{"email" => "updated@email.com"} = json_response(conn, 200)["data"]
+      assert %{"username" => "updated username"} = json_response(conn, 200)["data"]
     end
 
     test "renders errors when data is invalid", %{conn: conn, user: user} do
@@ -82,7 +76,5 @@ defmodule CoinwatchWeb.UserControllerTest do
     user = fixture(:user)
     {:ok, user: user}
   end
-
-  """
 
 end

@@ -2,7 +2,7 @@ defmodule Coinwatch.AccountsTest do
   use Coinwatch.DataCase
 
   alias Coinwatch.Accounts
-  
+
   describe "users" do
     alias Coinwatch.Accounts.User
 

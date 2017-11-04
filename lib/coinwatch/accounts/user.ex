@@ -89,8 +89,5 @@ defmodule Coinwatch.Accounts.User do
       |> Coinwatch.Repo.update
 
     end
-
-
   end
-
 end
