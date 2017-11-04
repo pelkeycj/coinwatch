@@ -3,7 +3,8 @@ defmodule Coinwatch.Assets.Market do
   import Ecto.Changeset
   alias Coinwatch.Assets.Market
 
-
+  #TODO? if we can figure out how to graph nicely in js,
+  # we could store a history of prices and present it as a graph
   schema "markets" do
     field :exchange, :string
     field :pair, :string
