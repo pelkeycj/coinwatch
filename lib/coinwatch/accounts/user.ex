@@ -60,7 +60,7 @@ defmodule Coinwatch.Accounts.User do
     {:ok, password}
   end
 
-  def valid_password?(password), do: {:error, "password is too short"}
+  def valid_password?(_), do: {:error, "password is too short"}
 
   # by Nat Tuck
   def update_tries(throttle, prev) do

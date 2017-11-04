@@ -22,6 +22,11 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :guardian, Guardian,
+  issuer: "Coinwatch",
+  serializer: Coinwatch.GuardianSerializer,
+  secret_key: "HHuQ//yJbyrNQQjLjo3c4wInp7wTOaMzekqZxypuVVsX6M4TncoFuP1RpNU/BtSk"
+
 config :coinwatch, Coinwatch.Scheduler,
        jobs: [
          market_data: [
@@ -29,7 +34,6 @@ config :coinwatch, Coinwatch.Scheduler,
            task: {Coinwatch.Assets, :upsert_markets, []}
          ]
        ]
-
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

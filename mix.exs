@@ -47,7 +47,8 @@ defmodule Coinwatch.Mixfile do
       {:timex, "~> 3.0"},
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"},
-      {:cors_plug, "~>1.2"},
+      {:cors_plug, "~> 1.2"},
+      {:guardian, "~> 0.14"},
     ]
   end
 
