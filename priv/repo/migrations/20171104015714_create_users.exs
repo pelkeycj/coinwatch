@@ -6,6 +6,8 @@ defmodule Coinwatch.Repo.Migrations.CreateUsers do
       add :username, :string, null: false
       add :email, :string, null: false
       add :password_hash, :string, null: false
+      add :pw_tries, :integer, null: false, default: 0
+      add :pw_last_try, :utc_datetime
 
       timestamps()
     end
