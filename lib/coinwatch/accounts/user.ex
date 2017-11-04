@@ -77,7 +77,7 @@ defmodule Coinwatch.Accounts.User do
         pw_tries: update_tries(throttle, user.pw_tries),
         pw_last_try: DateTime.utc_now()
       }
-      {:ok, user} = Ecto.Changeset.cast(user, changes, [:pw_tries, :pw_last_try])
+      {:ok, _user} = Ecto.Changeset.cast(user, changes, [:pw_tries, :pw_last_try])
       |> Coinwatch.Repo.update
 
     end

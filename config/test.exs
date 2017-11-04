@@ -17,3 +17,8 @@ config :coinwatch, Coinwatch.Repo,
   database: "coinwatch_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+#improve test time
+config :argon2_elixir,
+       t_cost: 2,
+       m_cost: 12
