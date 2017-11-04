@@ -3,7 +3,7 @@ defmodule CoinwatchWeb.UserControllerTest do
 
   alias Coinwatch.Accounts
   alias Coinwatch.Accounts.User
-  
+
   @create_attrs %{email: "some@email.com", password: "password", username: "username"}
   @update_attrs %{email: "updated@email.com", password: "updated password", username: "updated username"}
   @invalid_attrs %{email: nil, password: nil, username: nil}

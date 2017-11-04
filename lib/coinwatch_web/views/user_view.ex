@@ -14,6 +14,6 @@ defmodule CoinwatchWeb.UserView do
     %{id: user.id,
       username: user.username,
       email: user.email,
-      password_hash: user.password_hash}
+      password_hash: user.password_hash} #TODO probably dont want to output the password hash?
   end
 end

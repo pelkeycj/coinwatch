@@ -24,7 +24,7 @@ defmodule CoinwatchWeb.Router do
    scope "/api/0", CoinwatchWeb do
      pipe_through :api
 
-     resources "/market", MarketController, except: [:new, :edit]
+     resources "/markets", MarketController, except: [:new, :edit]
      resources "/users", UserController, except: [:new, :edit]
    end
 end
