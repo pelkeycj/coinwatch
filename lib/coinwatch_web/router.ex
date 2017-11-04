@@ -13,6 +13,7 @@ defmodule CoinwatchWeb.Router do
     plug :accepts, ["json"]
   end
 
+  #TODO eventually remove browser access altogether?
   scope "/", CoinwatchWeb do
     pipe_through :browser # Use the default browser stack
 
@@ -24,5 +25,6 @@ defmodule CoinwatchWeb.Router do
      pipe_through :api
 
      resources "/market", MarketController, except: [:new, :edit]
+     resources "/users", UserController, except: [:new, :edit]
    end
 end
