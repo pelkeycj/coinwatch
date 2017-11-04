@@ -4,8 +4,12 @@ defmodule CoinwatchWeb.UserControllerTest do
   alias Coinwatch.Accounts
   alias Coinwatch.Accounts.User
 
-  @create_attrs %{email: "some email", password_hash: "some password_hash", username: "some username"}
-  @update_attrs %{email: "some updated email", password_hash: "some updated password_hash", username: "some updated username"}
+  #TODO test user API actions
+
+  @docp """
+
+  @create_attrs %{email: "some email", password: "some password", username: "some username"}
+  @update_attrs %{email: "some updated email", password: "some updated password", username: "some updated username"}
   @invalid_attrs %{email: nil, password_hash: nil, username: nil}
 
   def fixture(:user) do
@@ -33,7 +37,6 @@ defmodule CoinwatchWeb.UserControllerTest do
       assert json_response(conn, 200)["data"] == %{
         "id" => id,
         "email" => "some email",
-        "password_hash" => "some password_hash",
         "username" => "some username"}
     end
 
@@ -54,7 +57,6 @@ defmodule CoinwatchWeb.UserControllerTest do
       assert json_response(conn, 200)["data"] == %{
         "id" => id,
         "email" => "some updated email",
-        "password_hash" => "some updated password_hash",
         "username" => "some updated username"}
     end
 
@@ -80,4 +82,7 @@ defmodule CoinwatchWeb.UserControllerTest do
     user = fixture(:user)
     {:ok, user: user}
   end
+
+  """
+
 end

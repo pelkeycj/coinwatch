@@ -3,6 +3,10 @@ defmodule Coinwatch.AccountsTest do
 
   alias Coinwatch.Accounts
 
+  #TODO test 
+
+  @docp  """
+
   describe "users" do
     alias Coinwatch.Accounts.User
 
@@ -66,4 +70,8 @@ defmodule Coinwatch.AccountsTest do
       assert %Ecto.Changeset{} = Accounts.change_user(user)
     end
   end
+
+
+  """
+
 end
