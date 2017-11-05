@@ -1,0 +1,4 @@
+
+experiments: https://github.com/pelkeycj/experiments
+
+project: https://github.com/jdcrouse/coinwatch
