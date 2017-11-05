@@ -1,6 +1,8 @@
-defmodule SessionController do
+defmodule CoinwatchWeb.SessionController do
   use CoinwatchWeb, :controller
   @moduledoc false
+
+  #TODO issue with testing -> possibly check it out with postman
 
   alias Coinwatch.Accounts.User
   alias Coinwatch.Repo
@@ -13,21 +15,26 @@ defmodule SessionController do
         jwt = Guardian.Plug.current_token(new_conn)
         new_conn
         |> put_status(:created)
+        |> put_resp_header("authorization", "Bearer #{jwt}")
         |> render("show.json", %{user: user, jwt: jwt})
 
       :error ->
         conn
         |> put_status(:unauthorized)
     end
-
   end
 
+
+  #TODO use sign_out/1
   def delete(conn, _params) do
-    Guardian.Plug.current_token(conn)
-    |> Guardian.revoke!()
+    IO.puts("delete session")
+    jwt = Guardian.Plug.current_token(conn)
+    Guardian.revoke!(jwt)
 
     conn
     |> put_status(:ok)
+    |> send_resp(200, "Logged out.")
+    #|> render("delete.json")
   end
 
   defp authenticate(username, password) do

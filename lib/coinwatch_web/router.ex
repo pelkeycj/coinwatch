@@ -27,8 +27,8 @@ defmodule CoinwatchWeb.Router do
    scope "/api/0", CoinwatchWeb do
      pipe_through :api
 
-     post "/sessions", SessionController, :create # login
-     delete "/sessions", SessionController, :delete #logout
+     post "/session", SessionController, :create # login
+     delete "/session", SessionController, :delete #logout
 
      resources "/markets", MarketController, except: [:new, :edit]
      resources "/users", UserController, except: [:new, :edit]
