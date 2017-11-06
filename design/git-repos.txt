@@ -1,4 +1,7 @@
 
 experiments: https://github.com/pelkeycj/experiments
 
-project: https://github.com/jdcrouse/coinwatch
+project API: https://github.com/jdcrouse/coinwatch
+
+project Front-end (React): https://github.com/pelkeycj/coinwatch-web
+    -- this has not been implemented yet
