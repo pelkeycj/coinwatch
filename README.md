@@ -1,4 +1,5 @@
 # Coinwatch
+[![Build Status](https://travis-ci.org/jdcrouse/coinwatch.svg?branch=master)](https://travis-ci.org/jdcrouse/coinwatch)
 
 To start your Phoenix server:
 
