@@ -10,10 +10,6 @@ defmodule Coinwatch.RelationsTest do
     alias Coinwatch.Accounts.User
     alias Coinwatch.Assets.Market
 
-    #TODO create user attrs
-    #TODO create market attrs
-    #TODO create market_user attrs
-
     @valid_user_attrs %{email: "some@email.com", username: "username", password: "password"}
     @valid_market_attrs %{exchange: "exchange", pair: "pair"}
     @invalid_mu_attrs %{user_id: nil, market_id: nil}
