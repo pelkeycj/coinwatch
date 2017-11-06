@@ -13,8 +13,8 @@ defmodule Coinwatch.Relations.MarketUser do
     timestamps()
   end
 
-  def changeset(struct, params \\ %{}) do
-    struct
+  def changeset(%MarketUser{} = mu, params \\ %{}) do
+    mu
     |> cast(params, [:user_id, :market_id])
     |> validate_required([:user_id, :market_id])
   end
