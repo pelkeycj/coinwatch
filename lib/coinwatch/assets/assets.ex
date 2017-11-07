@@ -173,8 +173,9 @@ defmodule Coinwatch.Assets do
     Broadcasts market to user's channel if they follow this market.
   """
   def broadcast_to_watchers(market) do
-    #TODO
-    IO.inspect(market)
+    #TODO probably just send all market data up?
+    # or should we broadcast each individually?
+    #IO.inspect(market)
     market
   end
 

@@ -32,5 +32,8 @@ defmodule CoinwatchWeb.Router do
 
      resources "/markets", MarketController, except: [:new, :edit]
      resources "/users", UserController, except: [:new, :edit]
+
+     post "/market_user", MarketUserController, :create
+     delete "/market_user", MarketUserController, :delete
    end
 end

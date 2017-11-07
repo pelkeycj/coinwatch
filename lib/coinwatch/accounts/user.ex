@@ -18,6 +18,9 @@ defmodule Coinwatch.Accounts.User do
     #used when registering
     field :password_confirmation, :string, virtual: true
 
+
+    many_to_many :markets, Coinwatch.Assets.Market, join_through: "markets_users"
+    
     timestamps()
   end
 
