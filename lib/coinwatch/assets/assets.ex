@@ -177,7 +177,7 @@ defmodule Coinwatch.Assets do
   """
   #TODO not sure if this works correctly, may have to push differently
   def broadcast_markets() do
-    CoinwatchWeb.Endpoint.broadcast("market_data:all", "new_data", %{all_markets: list_markets()})
+    CoinwatchWeb.Endpoint.broadcast("market_data:all", "new_data", %{all_markets: list_market()})
   end
 
 end

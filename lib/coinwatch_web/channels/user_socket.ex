@@ -3,6 +3,7 @@ defmodule CoinwatchWeb.UserSocket do
 
   ## Channels
   # channel "room:*", CoinwatchWeb.RoomChannel
+  channel "market_data:all", CoinwatchWeb.MarketDataChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
