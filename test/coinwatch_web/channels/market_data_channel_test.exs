@@ -2,6 +2,12 @@ defmodule CoinwatchWeb.MarketDataChannelTest do
   use CoinwatchWeb.ChannelCase
 
   alias CoinwatchWeb.MarketDataChannel
+  alias Coinwatch.Assets
+
+  def fixture(:market) do
+    {:ok, market} = Assets.create_market(%{exchange: "exchange", pair: "pair", rate: Decimal.new(100)})
+    market
+  end
 
   setup do
     {:ok, _, socket} =
@@ -26,7 +32,14 @@ defmodule CoinwatchWeb.MarketDataChannelTest do
     assert_push "broadcast", %{"some" => "data"}
   end
 
-  #TODO test join returns data
+  test "join/3 replies with current market_data" do
+    market = fixture(:market)
+    {:ok, data, socket} = socket("test", %{some: :assign})
+      |> subscribe_and_join(MarketDataChannel, "market_data:all")
+
+    assert data.market_data == [market]
+  end
 
   #TODO test handle out broadcasts all markets
+
 end
