@@ -9,16 +9,22 @@ defmodule Coinwatch.Relations do
 
 
   @doc """
-    Returns a list of market_user.
+    Returns a list of MarketUser.
   """
   def list_market_user do
     Repo.all(MarketUser)
   end
 
   @doc """
-    Retrieves a single market_user by id.
+    Retrieves a single MarketUser.
     Raises 'Ecto.NoResultsError' if the MarketUser does not exist.
   """
+  def get_market_user!(%{"user_id" => user_id, "market_id" => market_id}) do
+    Repo.one(from(m in MarketUser,
+      where: m.user_id == ^user_id and m.market_id == ^market_id))
+
+  end
+
   def get_market_user!(id), do: Repo.get!(MarketUser, id)
 
   @doc """
