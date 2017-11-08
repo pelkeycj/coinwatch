@@ -175,9 +175,8 @@ defmodule Coinwatch.Assets do
     Broadcasts all market data in one blob to members of channel
     market_data:all
   """
-  #TODO not sure if this works correctly, may have to push differently
   def broadcast_markets() do
-    CoinwatchWeb.Endpoint.broadcast("market_data:all", "new_data", %{all_markets: list_market()})
+    CoinwatchWeb.Endpoint.broadcast("market_data:all", "market_data", %{market_data: list_market()})
   end
 
 end
