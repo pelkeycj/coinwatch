@@ -42,13 +42,14 @@ defmodule Coinwatch.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:httpoison, "~> 0.13"},
-      {:poison, "~> 3.1"},
+      {:poison, "~> 3.1", override: true},
       {:quantum, ">= 2.1.1"},
       {:timex, "~> 3.0"},
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"},
       {:cors_plug, "~> 1.2"},
       {:guardian, "~> 0.14"},
+      {:mailgun, "~> 0.1.2"}
     ]
   end
 
