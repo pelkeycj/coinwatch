@@ -1,9 +1,0 @@
-1. Overview
-2. User Stories
-3. Data Design
-    a. Users
-    b. Markets
-    c. MarketsUsers (join table)
-4. App Interface
-5. Experiments
-6. Project Status
