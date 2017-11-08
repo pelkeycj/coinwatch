@@ -13,6 +13,12 @@ defmodule CoinwatchWeb.UserView do
   def render("user.json", %{user: user}) do
     %{id: user.id,
       username: user.username,
-      email: user.email}
+      email: user.email,
+      markets: get_markets(user)}
+  end
+
+  def get_markets(user) do
+    user = Coinwatch.Repo.preload(user, :markets)
+    render_many(user.markets, CoinwatchWeb.MarketView, "market.json")
   end
 end

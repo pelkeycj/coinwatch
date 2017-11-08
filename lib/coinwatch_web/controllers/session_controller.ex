@@ -2,7 +2,7 @@ defmodule CoinwatchWeb.SessionController do
   use CoinwatchWeb, :controller
   @moduledoc false
 
-  #TODO issue with testing -> possibly check it out with postman
+  #TODO issue with testing this. need to ensure it works
 
   alias Coinwatch.Accounts.User
   alias Coinwatch.Repo

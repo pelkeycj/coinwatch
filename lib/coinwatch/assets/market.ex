@@ -10,6 +10,8 @@ defmodule Coinwatch.Assets.Market do
     field :pair, :string
     field :rate, :decimal
 
+    many_to_many :users, Coinwatch.Accounts.User, join_through: "markets_users"
+
     timestamps()
   end
 

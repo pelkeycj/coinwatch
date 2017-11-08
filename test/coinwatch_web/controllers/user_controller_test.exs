@@ -28,10 +28,10 @@ defmodule CoinwatchWeb.UserControllerTest do
     test "renders user when data is valid", %{conn: conn} do
       conn = post conn, user_path(conn, :create), user: @create_attrs
       assert %{"id" => id} = json_response(conn, 201)["data"]
-      assert %{"token" => token} = json_response(conn, 201)["meta"]
+      assert %{"token" => _token} = json_response(conn, 201)["meta"]
 
       conn = get conn, user_path(conn, :show, id)
-      assert %{"id" => id} = json_response(conn, 200)["data"]
+      assert %{"id" => _id} = json_response(conn, 200)["data"]
       assert %{"email" => "some@email.com"} = json_response(conn, 200)["data"]
       assert %{"username" => "username"} = json_response(conn, 200)["data"]
     end
@@ -50,7 +50,7 @@ defmodule CoinwatchWeb.UserControllerTest do
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
       conn = get conn, user_path(conn, :show, id)
-      assert %{"id" => id} = json_response(conn, 200)["data"]
+      assert %{"id" => _id} = json_response(conn, 200)["data"]
       assert %{"email" => "updated@email.com"} = json_response(conn, 200)["data"]
       assert %{"username" => "updated username"} = json_response(conn, 200)["data"]
     end
