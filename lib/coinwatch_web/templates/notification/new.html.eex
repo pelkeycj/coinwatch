@@ -1,5 +1,0 @@
-<h2>New Notification</h2>
-
-<%= render "form.html", Map.put(assigns, :action, notification_path(@conn, :create)) %>
-
-<span><%= link "Back", to: notification_path(@conn, :index) %></span>

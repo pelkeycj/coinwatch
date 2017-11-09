@@ -35,7 +35,5 @@ defmodule CoinwatchWeb.Router do
 
      post "/market_user", MarketUserController, :create
      delete "/market_user", MarketUserController, :delete
-
-     resources "/notifications", NotificationController
    end
 end
