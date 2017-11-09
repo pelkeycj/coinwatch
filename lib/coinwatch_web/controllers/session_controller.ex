@@ -31,8 +31,8 @@ defmodule CoinwatchWeb.SessionController do
 
     conn
     |> put_status(:ok)
-    |> send_resp(200, "Logged out.")
-    #|> render("delete.json")
+    #|> send_resp(200, "Logged out.")
+    |> render("index.json")
   end
 
   defp authenticate(username, password) do
