@@ -1,0 +1,23 @@
+<h2>Show Notification</h2>
+
+<ul>
+
+  <li>
+    <strong>Threshold:</strong>
+    <%= @notification.threshold %>
+  </li>
+
+  <li>
+    <strong>High:</strong>
+    <%= @notification.high %>
+  </li>
+
+  <li>
+    <strong>Notified:</strong>
+    <%= @notification.notified %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: notification_path(@conn, :edit, @notification) %></span>
+<span><%= link "Back", to: notification_path(@conn, :index) %></span>
