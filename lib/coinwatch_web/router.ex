@@ -17,6 +17,7 @@ defmodule CoinwatchWeb.Router do
   end
 
   #TODO eventually remove browser access altogether?
+  #TODO also remove all non-json views + associated tests
   scope "/", CoinwatchWeb do
     pipe_through :browser # Use the default browser stack
 

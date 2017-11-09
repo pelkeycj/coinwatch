@@ -25,16 +25,14 @@ defmodule CoinwatchWeb.SessionController do
   end
 
 
-  #TODO use sign_out/1
   def delete(conn, _params) do
-    IO.puts("delete session")
     jwt = Guardian.Plug.current_token(conn)
     Guardian.revoke!(jwt)
 
     conn
     |> put_status(:ok)
-    |> send_resp(200, "Logged out.")
-    #|> render("delete.json")
+    #|> send_resp(200, "Logged out.")
+    |> render("index.json")
   end
 
   defp authenticate(username, password) do

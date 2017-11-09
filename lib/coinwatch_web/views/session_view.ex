@@ -9,6 +9,10 @@ defmodule CoinwatchWeb.SessionView do
     }
   end
 
+  def render("index.json", _params) do
+    %{}
+  end
+
   def user_render(user) do
     %{username: user.username, email: user.email,
       id: user.id}
