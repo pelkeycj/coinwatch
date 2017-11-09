@@ -9,8 +9,16 @@ defmodule CoinwatchWeb.SessionView do
     }
   end
 
-  def render("index.json", _params) do
-    %{}
+  def render("delete.json", _) do
+    %{ok: true}
+  end
+
+  def render("error.json", _) do
+    %{error: "invalid username or password"}
+  end
+
+  def render("forbidden.json", %{error: error}) do
+    %{error: error}
   end
 
   def user_render(user) do

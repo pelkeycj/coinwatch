@@ -31,6 +31,8 @@ defmodule CoinwatchWeb.Router do
      post "/session", SessionController, :create # login
      delete "/session", SessionController, :delete #logout
 
+     post "/session/refresh", SessionController, :refresh
+
      resources "/markets", MarketController, except: [:new, :edit]
      resources "/users", UserController, except: [:new, :edit]
 

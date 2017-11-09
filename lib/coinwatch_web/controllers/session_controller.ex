@@ -2,7 +2,8 @@ defmodule CoinwatchWeb.SessionController do
   use CoinwatchWeb, :controller
   @moduledoc false
 
-  #TODO issue with testing this. need to ensure it works
+  #TODO test this. need to ensure it works
+  # Low priority, given timeline
 
   alias Coinwatch.Accounts.User
   alias Coinwatch.Repo
@@ -21,7 +22,28 @@ defmodule CoinwatchWeb.SessionController do
       :error ->
         conn
         |> put_status(:unauthorized)
+        |> render("error.json")
     end
+  end
+
+  def refresh(conn, _params) do
+    user = Guardian.Plug.current_resource(conn)
+    jwt = Guardian.Plug.current_token(conn)
+
+    {:ok, claims} = Guardian.Plug.claims(conn)
+
+    case Guardian.refresh!(jwt, claims) do
+      {:ok, new_jwt, _new_claims} ->
+        conn
+        |> put_status(:ok)
+        |> render("show.json", %{user: user, jwt: new_jwt})
+
+      {:error, _reason} ->
+        conn
+        |> put_status(:unauthorized)
+        |> render("forbidden.json", error: "Not authenticated")
+    end
+
   end
 
 
@@ -31,8 +53,7 @@ defmodule CoinwatchWeb.SessionController do
 
     conn
     |> put_status(:ok)
-    #|> send_resp(200, "Logged out.")
-    |> render("index.json")
+    |> render("delete.json")
   end
 
   defp authenticate(username, password) do
