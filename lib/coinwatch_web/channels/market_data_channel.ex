@@ -4,7 +4,7 @@ defmodule CoinwatchWeb.MarketDataChannel do
   def join("market_data:all", payload, socket) do
     if authorized?(payload) do
       data = %{market_data: Coinwatch.Assets.list_market()}
-      {:ok,  socket}
+      {:ok, data,  socket}
       #{:reply, {:ok, data}, socket}
     else
       {:error, %{reason: "unauthorized"}}
