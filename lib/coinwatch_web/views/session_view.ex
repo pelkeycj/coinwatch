@@ -23,6 +23,6 @@ defmodule CoinwatchWeb.SessionView do
 
   def user_render(user) do
     %{username: user.username, email: user.email,
-      id: user.id}
+      id: user.id, markets: Coinwatch.Repo.preload(user, :markets)}
   end
 end
