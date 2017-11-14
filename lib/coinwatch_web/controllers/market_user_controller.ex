@@ -20,9 +20,10 @@ defmodule CoinwatchWeb.MarketUserController do
 
   def delete(conn, %{"market_user" => params}) do
     mu = Relations.get_market_user!(params)
-    user = Accounts.get_user!(mu.user_id)
 
     with {:ok, %MarketUser{}} <- Relations.delete_market_user(mu) do
+      user = Accounts.get_user!(mu.user_id)
+
       conn
       |> put_status(:ok)
       |> put_resp_header("location", user_path(conn, :show, user))
