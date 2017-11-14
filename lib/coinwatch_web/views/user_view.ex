@@ -17,6 +17,10 @@ defmodule CoinwatchWeb.UserView do
       markets: get_markets(user)}
   end
 
+  def render("delete.json", _) do
+    %{ok: true}
+  end
+
   def get_markets(user) do
     user = Coinwatch.Repo.preload(user, :markets)
     render_many(user.markets, CoinwatchWeb.MarketView, "market.json")
