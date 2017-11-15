@@ -1,9 +1,7 @@
 defmodule Coinwatch.Mailer do
   use Mailgun.Client,
-      domain: Application.get_env(:email_notifs, :mailgun_domain),
-      key: Application.get_env(:email_notifs, :mailgun_key),
-      mode: :test,
-      test_file_path: "/tmp/mailgun.json"
+      domain: Application.get_env(:coinwatch, :mailgun_domain),
+      key: Application.get_env(:coinwatch, :mailgun_key)
 
   @from "coinwatch@mg.jdcrouse.org"
 
@@ -24,9 +22,6 @@ defmodule Coinwatch.Mailer do
   defp alert_text(curr, val) do
     "The price for " <> curr <> " has reached your desired alert value of " <> val <> "."
   end
-
-
-
 
 
 end
