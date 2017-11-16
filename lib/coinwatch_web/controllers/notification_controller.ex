@@ -13,6 +13,8 @@ defmodule CoinwatchWeb.NotificationController do
 
   def create(conn, %{"notification" => notification_params}) do
     with {:ok, %Notification{} = notification} <- Assets.create_notification(notification_params) do
+      Mailer.send_signup_confirmation(notification)
+
       conn
       |> put_status(:created)
       |> put_resp_header("location", notification_path(conn, :show, notification))
