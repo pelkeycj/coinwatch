@@ -5,22 +5,44 @@ defmodule Coinwatch.Mailer do
 
   @from "coinwatch@mg.jdcrouse.org"
 
-  #
-  # the inputs are all the things we will store when a user requests updates
-  # **idea: pass these in some sort of structure that can be unpacked
-  #
-  # e_addr: email address of user
-  #   curr: symbol for currency that we are notifying them of
-  #    val: user-specified critical value as a string
-  def send_price_alert_email(e_addr, curr, val) do
-    send_email to: e_addr,
+  def send_signup_confirmation(notif) do
+    addr = "jdcrouse21@gmail.com"
+    pair = notif.pair
+    val = Integer.to_string(notif.threshold)
+    above? = notif.high
+
+    send_email to: addr,
                from: @from,
-               subject: "Price Alert for " <> curr,
-               text: alert_text(curr, val)
+               subject: "Signup confirmation for " <> pair,
+               text: signup_text(pair, val, above?)
   end
 
-  defp alert_text(curr, val) do
-    "The price for " <> curr <> " has reached your desired alert value of " <> val <> "."
+  def send_price_alert_email(notif) do
+    addr = "jdcrouse21@gmail.com"
+    pair = notif.pair
+    val = Integer.to_string(notif.threshold)
+    above? = notif.high
+
+    send_email to: addr,
+               from: @from,
+               subject: "Price Alert for " <> pair,
+               text: alert_text(pair, val, above?)
+  end
+
+  defp alert_text(curr, val, above?) do
+    if above? do
+      "The price for " <> curr <> " has gone above your desired alert value of $" <> val <> "."
+    else
+      "The price for " <> curr <> " has gone below your desired alert value of $" <> val <> "."
+    end
+  end
+
+  defp signup_text(curr, val, above?) do
+    if above? do
+      "You have signed up to be notified when " <> curr <> " goes above $" <> val
+    else
+      "You have signed up to be notified when " <> curr <> " goes below $" <> val
+    end
   end
 
 
