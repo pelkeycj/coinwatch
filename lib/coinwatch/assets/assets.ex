@@ -8,6 +8,20 @@ defmodule Coinwatch.Assets do
 
   alias Coinwatch.Assets.Market
 
+
+  #Returns the current price for all supported markets in JSON.
+  #Some values may be out of date by a few seconds.
+  #### Data is in the form "EXCHANGE:PAIR" : PRICE in a list
+  def market_prices_URL do
+    "https://api.cryptowat.ch/markets/prices"
+  end
+
+  # Returns the market summary for all supported markets.
+  # Some values may be out of date by a few seconds.
+  def market_summary_URL do
+    "https://api.cryptowat.ch/markets/summaries"
+  end
+
   @doc """
   Returns the list of market.
 
@@ -102,19 +116,6 @@ defmodule Coinwatch.Assets do
     Market.changeset(market, %{})
   end
 
-  #Returns the current price for all supported markets in JSON.
-  #Some values may be out of date by a few seconds.
-  #### Data is in the form "EXCHANGE:PAIR" : PRICE in a list
-  def market_prices_URL do
-    "https://api.cryptowat.ch/markets/prices"
-  end
-
-  # Returns the market summary for all supported markets.
-  # Some values may be out of date by a few seconds.
-  def market_summary_URL do
-    "https://api.cryptowat.ch/markets/summaries"
-  end
-
   def get_decoded_URL(url) do
     res = HTTPoison.get!(url)
     Poison.decode(res.body)
@@ -138,6 +139,8 @@ defmodule Coinwatch.Assets do
       |> Enum.each(fn {k, v} ->
           upsert_market(k, v)
         end)
+
+      broadcast_markets()
     end
   end
 
@@ -153,7 +156,6 @@ defmodule Coinwatch.Assets do
     get_or_create(exchange, pair)
     |> Market.changeset(%{rate: rate})
     |> Repo.insert_or_update()
-    |> broadcast_to_watchers()
   end
 
   @doc """
@@ -170,13 +172,30 @@ defmodule Coinwatch.Assets do
   end
 
   @doc """
-    Broadcasts market to user's channel if they follow this market.
+    Broadcasts all market data in one blob to members of channel
+    market_data:all
   """
-  def broadcast_to_watchers(market) do
-    #TODO probably just send all market data up?
-    # or should we broadcast each individually?
-    #IO.inspect(market)
-    market
+  def broadcast_markets() do
+    CoinwatchWeb.Endpoint.broadcast("market_data:all", "market_data", %{market_data: list_market()})
+  end
+
+
+  # from https://coderwall.com/p/fhsehq/fix-encoding-issue-with-ecto-and-poison
+  # to fix Poison encoding error when encoding a struct
+  # added :users in sanitize map (they are not preloaded)
+  defimpl Poison.Encoder , for: Any do
+    def encode(%{__struct__: _} = struct, options) do
+      map = struct
+        |> Map.from_struct
+        |> sanitize_map
+
+
+      Poison.Encoder.Map.encode(map, options)
+    end
+
+    defp sanitize_map(map) do
+      Map.drop(map, [:__meta__, :__struct__, :users])
+    end
   end
 
 
