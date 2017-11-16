@@ -26,3 +26,4 @@ end
 
 # Coinwatch.Mailer.send_signup_confirmation(note)
 # Coinwatch.Mailer.send_price_alert_email(note)
+# Coinwatch.Assets.create_notification(%{pair: "BTCUSD", threshold: 340, high: false, notified: false})

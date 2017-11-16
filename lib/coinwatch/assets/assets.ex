@@ -245,7 +245,8 @@ defmodule Coinwatch.Assets do
   def create_notification(attrs \\ %{}) do
     %Notification{}
     |> Notification.changeset(attrs)
-    |> Repo.insert()
+    |> Repo.insert!()
+    |> Coinwatch.Mailer.send_signup_confirmation()
   end
 
   @doc """
