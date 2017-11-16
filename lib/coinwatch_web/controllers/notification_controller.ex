@@ -3,6 +3,7 @@ defmodule CoinwatchWeb.NotificationController do
 
   alias Coinwatch.Assets
   alias Coinwatch.Assets.Notification
+  alias Coinwatch.Mailer
 
   action_fallback CoinwatchWeb.FallbackController
 
