@@ -10,6 +10,8 @@ defmodule Coinwatch.Assets.Notification do
     field :pair, :string
     field :threshold, :integer
     field :user_id, :id
+    field :last_rate, :decimal, default: Decimal.new(0.0)
+    field :market_id, :id
 
     timestamps()
   end
@@ -17,12 +19,12 @@ defmodule Coinwatch.Assets.Notification do
   @doc false
   def changeset(%Notification{} = notification, attrs) do
     notification
-    |> cast(attrs, [:pair, :threshold, :high, :notified])
+    |> cast(attrs, [:pair, :threshold, :high, :notified, :last_rate, :market_id])
     |> validate_required([:pair, :threshold, :high, :notified])
   end
 end
 
-# note = %Coinwatch.Assets.Notification{pair: "BTCUSD", threshold: 340, high: false, notified: false}
+# note = %Coinwatch.Assets.Notification{pair: "BTCUSD", threshold: 340, high: true, notified: false, last_rate: 3}
 
 # Coinwatch.Mailer.send_signup_confirmation(note)
 # Coinwatch.Mailer.send_price_alert_email(note)
