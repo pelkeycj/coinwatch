@@ -6,7 +6,8 @@ defmodule Coinwatch.Mailer do
   @from "coinwatch@mg.jdcrouse.org"
 
   def send_signup_confirmation(notif) do
-    addr = "test@example.com"
+    usr = Coinwatch.Accounts.get_user!(notif.user_id)
+    addr = usr.email
     pair = notif.pair
     val = Integer.to_string(notif.threshold)
     above? = notif.high
@@ -18,7 +19,8 @@ defmodule Coinwatch.Mailer do
   end
 
   def send_price_alert_email(notif) do
-    addr = "jdcrouse21@gmail.com"
+    usr = Coinwatch.Accounts.get_user!(notif.user_id)
+    addr = usr.email
     pair = notif.pair
     val = Integer.to_string(notif.threshold)
     above? = notif.high

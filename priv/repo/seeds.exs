@@ -11,23 +11,13 @@
 # and so on) as they will fail if something goes wrong.
 alias Coinwatch.Repo
 alias Coinwatch.Assets.Notification
-
+alias Coinwatch.Accounts.User
 Repo.delete_all(Notification)
 
-Repo.insert(%Notification{pair: "btcusd", threshold: 340, high: true, notified: false, last_rate: 3})
-Repo.insert(%Notification{pair: "btcusd", threshold: 10000, high: false, notified: false, last_rate: 100000})
-Repo.insert(%Notification{pair: "btcusd", threshold: 340, high: true, notified: true, last_rate: 3})
-
-# note = Coinwatch.Assets.get_notification!(7)
-# Coinwatch.Assets.update_notification(note, %{threshold: 10000})
-# Coinwatch.Assets.check_passed_below(note)
-# Coinwatch.Assets.update_most_recent_price_high(note) --> WORKS
-#    for mark <- marks do
-#      IO.puts("market rate" <> Decimal.to_string(mark.rate))
-#      IO.puts("currenct high: ")
-#      if mark.rate > high do
-#        high = mark.rate
-#        IO.puts("updated high to rate" <> Decimal.to_string(^high))
-#        high_mark = mark.id
-#      end
-#    end
+#Coinwatch.Accounts.create_user(%{username: "jdcrouse", email: "jdcrouse21@gmail.com", password: "passworddd", password_confirmation: "passworddd"})
+# jj = Coinwatch.Accounts.get_user!(3)
+# Coinwatch.Assets.create_notification(%{user_id: 3, pair: "btcusd", threshold: 340, high: true, notified: false, last_rate: 3})
+#Repo.insert(%User{username: "jdcrouse", email: "jdcrouse21@gmail.com", password: "passworddd", password_confirmation: "passworddd"})
+#Repo.insert(%Notification{user_id: 1, pair: "btcusd", threshold: 340, high: true, notified: false, last_rate: 3})
+#Repo.insert(%Notification{pair: "btcusd", threshold: 10000, high: false, notified: false, last_rate: 100000})
+#Repo.insert(%Notification{pair: "btcusd", threshold: 340, high: true, notified: true, last_rate: 3})

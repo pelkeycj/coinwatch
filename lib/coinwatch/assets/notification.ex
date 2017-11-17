@@ -11,7 +11,6 @@ defmodule Coinwatch.Assets.Notification do
     field :threshold, :integer
     field :user_id, :id
     field :last_rate, :decimal, default: Decimal.new(0.0)
-    field :market_id, :id
 
     timestamps()
   end
@@ -19,7 +18,7 @@ defmodule Coinwatch.Assets.Notification do
   @doc false
   def changeset(%Notification{} = notification, attrs) do
     notification
-    |> cast(attrs, [:pair, :threshold, :high, :notified, :last_rate, :market_id])
+    |> cast(attrs, [:user_id, :pair, :threshold, :high, :notified, :last_rate])
     |> validate_required([:pair, :threshold, :high, :notified])
   end
 end
