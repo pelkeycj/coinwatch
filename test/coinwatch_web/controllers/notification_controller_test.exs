@@ -25,18 +25,7 @@ defmodule CoinwatchWeb.NotificationControllerTest do
   end
 
   describe "create notification" do
-    test "renders notification when data is valid", %{conn: conn} do
-      conn = post conn, notification_path(conn, :create), notification: @create_attrs
-      assert %{"id" => id} = json_response(conn, 201)["data"]
 
-      conn = get conn, notification_path(conn, :show, id)
-      assert json_response(conn, 200)["data"] == %{
-        "id" => id,
-        "high" => true,
-        "notified" => true,
-        "pair" => "some pair",
-        "threshold" => 42}
-    end
 
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post conn, notification_path(conn, :create), notification: @invalid_attrs
