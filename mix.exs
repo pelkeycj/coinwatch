@@ -49,6 +49,7 @@ defmodule Coinwatch.Mixfile do
       {:argon2_elixir, "~> 1.2"},
       {:cors_plug, "~> 1.2"},
       {:guardian, "~> 0.14"},
+      {:distillery, "~> 1.4", runtime: false},
     ]
   end
 
