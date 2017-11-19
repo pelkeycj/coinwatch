@@ -27,6 +27,9 @@ defmodule Coinwatch.ReleaseTasks do
     IO.puts "Starting Repos . . ."
     Enum.each(@repos, &(&1.start_link(pool_size: 1)))
 
+    # run migrations
+    Enum.each(@coinwatch, &run_migrations_for/1)
+
     # run seed script, if exists
     seed_script = Path.join([priv_dir(:coinwatch), "repo", "seeds.exs"])
     if File.exists?(seed_script) do
