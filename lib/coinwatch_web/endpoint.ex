@@ -38,8 +38,8 @@ defmodule CoinwatchWeb.Endpoint do
     key: "_coinwatch_key",
     signing_salt: "2PAZEI7k"
 
-  #TODO add origin: ["frontend origin"]
-  plug CORSPlug
+  #plug Corsica, origins: "*"
+  #plug CORSPlug, origin: ["http://coinwatch.pelkey.tech", "http://  localhost"]
 
   plug CoinwatchWeb.Router
 

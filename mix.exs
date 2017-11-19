@@ -20,7 +20,7 @@ defmodule Coinwatch.Mixfile do
   def application do
     [
       mod: {Coinwatch.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :corsica],
     ]
   end
 
@@ -48,6 +48,7 @@ defmodule Coinwatch.Mixfile do
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"},
       {:cors_plug, "~> 1.2"},
+      {:corsica, "~> 1.0"},
       {:guardian, "~> 0.14"},
       {:distillery, "~> 1.4", runtime: false},
     ]
