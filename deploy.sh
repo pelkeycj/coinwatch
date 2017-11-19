@@ -19,6 +19,6 @@ mix deps.get
 mix phx.digest
 MIX_ENV=prod mix release --env=prod
 
-scp _build/prod/rel/coinwatch/releases/0.0.1/coinwatch.tar.gz coinwatch@antares:~/ &&
+scp _build/prod/rel/coinwatch/releases/0.0.1/coinwatch.tar.gz coinwatch@antares:~/api/ &&
 ssh coinwatch@antares
 

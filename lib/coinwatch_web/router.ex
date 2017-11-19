@@ -12,7 +12,7 @@ defmodule CoinwatchWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
     # look for a token in the header and validate it
-    plug CORSPlug, [origin: "http://localhost:3000"] #TODO this isnt working (see options routes)
+    #plug CORSPlug, [origin: "http://localhost:3000"] #TODO this isnt working (see options routes)
     plug Guardian.Plug.VerifyHeader, realm: "Bearer"
     plug Guardian.Plug.LoadResource
   end

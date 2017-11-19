@@ -58,6 +58,7 @@ defmodule CoinwatchWeb.SessionController do
     conn
     |> put_status(:ok)
     |> put_resp_header("Access-Control-Allow-Origin", "*")
+    |> send_resp(:ok, "")
   end
 
 
